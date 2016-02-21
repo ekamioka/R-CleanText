@@ -10,5 +10,6 @@ Text cleaning function with:
 - Removal of everything that is not a number or letter
 - Removal of multiple spaces, just keeping one space
 - Spliting by words, perhaps you can consider as tokenization
-- Stemming just words, sentences coming soon
+- Stemming
+- Removal of stop-words
 - Removal of trailing "" if necessary
