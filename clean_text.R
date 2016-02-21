@@ -1,6 +1,7 @@
 ## Inspired by Matthew James Denny - http://www.mjdenny.com/Text_Processing_In_R.html
 
 library(stringr)
+library(qdap)
 
 clean_text <- function(text){
   # Remove special characters
@@ -19,7 +20,9 @@ clean_text <- function(text){
   # Split it
   #text <- str_split(text, " ")[[1]]
   # Stemmer
-  text <- wordStem(text, language = 'english')
+  text = sapply(text, function(x){ paste(stemmer(x, capitalize=FALSE), collapse=" ")  })
+  # Remove Stop Words
+  text = gsub(paste("(\\b", paste(stopwords("english"), collapse="\\b|\\b"), "\\b)", sep=""), "", text)
   # Get rid of trailing "" if necessary
   indexes <- which(text == "")
   if(length(indexes) > 0){
@@ -27,3 +30,4 @@ clean_text <- function(text){
   } 
   return(text)
 }
+
